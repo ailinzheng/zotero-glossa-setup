@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zotero + Claude · 安装与配置</title>
+<style>
+:root{color-scheme:light;--ink:#172b35;--muted:#52636d;--green:#136958;--line:#dbe5e2}
+*{box-sizing:border-box}body{margin:0;background:#f5f7f5;color:var(--ink);font:16px/1.8 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+main{max-width:960px;margin:auto;padding:48px 24px 72px}.eyebrow{color:var(--green);font-weight:700;letter-spacing:.07em;font-size:13px}h1{font-size:clamp(28px,5vw,42px);line-height:1.25;margin:12px 0 16px}h2{font-size:23px;margin:0 0 16px}h3{font-size:17px;margin:0 0 10px}p{margin:10px 0}.intro{color:var(--muted);max-width:720px}.notice{border-left:4px solid #d29b30;background:#fff7e6;padding:16px 20px;margin:26px 0}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:26px;margin-top:22px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.platform{background:#f0f5f3;padding:18px;border-radius:10px}ol{padding-left:25px;margin:12px 0}li{padding:4px 0}code{font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#edf2ef;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f4f7f5}a{color:var(--green);text-underline-offset:3px}.small{font-size:14px;color:var(--muted)}.prompt{background:#edf5f1;border-radius:10px;padding:17px 20px}details{border-top:1px solid var(--line);padding:13px 0}summary{cursor:pointer;font-weight:600}footer{margin-top:26px;color:var(--muted);font-size:13px}button{border:1px solid var(--green);color:var(--green);background:white;padding:7px 13px;border-radius:8px;font:inherit;cursor:pointer}@media(max-width:650px){main{padding:28px 16px}.card{padding:20px}.grid{grid-template-columns:1fr}table{font-size:14px}td,th{padding:9px 7px}}
+</style>
+<main>
+<div class="eyebrow">GLOSSA 0.2.0 · 中文安装指南</div>
+<h1>在 Zotero 里，和 Claude 一起读论文。</h1>
+<p class="intro">安装助手已包含作者发布的原版插件，无需去 GitHub 找下载按钮。运行对应脚本部署文件，再在 Zotero 内确认启用并填写你已有的 API 密钥。</p>
+<div class="notice"><strong>先看 Zotero 版本：</strong>本版本插件仅兼容 <strong>10.0.6 及以后的正式版 10.x</strong>。在“帮助 → 关于 Zotero”（Mac：Zotero 菜单）查看版本。其他主版本或测试版请先核对兼容性；助手不会自动升级 Zotero。</div>
+
+<section class="card"><h2>① 解压、退出 Zotero、运行脚本</h2>
+<p>先把整个 ZIP 解压出来。保存工作，并完全退出 Zotero。不要在压缩包预览窗口内直接运行。</p>
+<div class="grid"><div class="platform"><h3>Windows</h3><p>双击 <code>START-Windows.cmd</code>。</p><p class="small">使用系统自带 PowerShell，无需管理员权限。若系统或单位策略阻止脚本，直接使用下面的“手动安装”方式。</p></div><div class="platform"><h3>macOS</h3><p>双击 <code>START-macOS.command</code>。</p><p class="small">退出 Zotero 请使用 <kbd>Command</kbd> + <kbd>Q</kbd>。若文件缺少执行权限，可在终端输入 <code>bash </code>，把该文件拖进终端，再按回车；若系统阻止执行，使用手动安装。</p></div></div>
+<p class="small">脚本会核对版本和文件校验值，识别配置文件；如有多个 Zotero 配置，会让你选择。安装阶段无需联网。脚本不会强制关闭 Zotero。</p>
+</section>
+
+<section class="card"><h2>② 在 Zotero 确认插件</h2>
+<ol><li>脚本部署完成后会尝试打开 Zotero。进入 <strong>工具 → 插件</strong>。</li><li>找到 <strong>Glossa for Zotero</strong>。如果显示“启用”或安装确认，点击一次；如果提示重启，先重启。</li><li>选中一篇带 PDF 的文献，点击右侧导航栏的 <strong>Glossa 图标</strong>。</li></ol>
+<p class="small">本助手自动部署文件，首次启用可能仍需在 Zotero 内确认。只有插件已启用、面板正常出现，才算插件安装完成。</p>
+<details><summary>没有出现插件？用 Zotero 自带的安装功能</summary><ol><li>打开 <strong>工具 → 插件</strong>。</li><li>把本文件夹中 <code>payload/glossa-zotero-0.2.0.xpi</code> 拖进插件窗口；或在齿轮菜单选择“从文件安装插件…”，选中该文件。</li><li>按提示完成安装，必要时重启 Zotero。不要解压 XPI，也不要把 XPI 安装到浏览器。</li></ol></details>
+</section>
+
+<section class="card"><h2>③ 填写你已有的 Claude 密钥</h2>
+<p>在 Glossa 面板中点击<strong>输入框下方的模型名称 → 添加 API 服务</strong>。</p>
+<table><thead><tr><th>字段</th><th>Anthropic 官方密钥的填法</th></tr></thead><tbody><tr><td>服务预设</td><td><strong>Anthropic</strong></td></tr><tr><td>协议</td><td><strong>Anthropic</strong></td></tr><tr><td>API 地址</td><td><code>https://api.anthropic.com</code></td></tr><tr><td>API Key</td><td>仅在 Zotero 内粘贴你自己的密钥。</td></tr><tr><td>模型 ID</td><td>点击<strong>获取模型列表</strong>，从账户可用模型中选择。</td></tr></tbody></table>
+<p>点击<strong>保存配置</strong>，回到对话面板发送一个问题。</p>
+<div class="notice"><strong>如果密钥来自第三方服务商：</strong>使用该服务商给你的 <strong>API 地址、协议和模型 ID</strong>。仅凭“Claude 密钥”不能确定地址；有些服务商采用 Anthropic 协议，有些采用 OpenAI 兼容协议。模型列表接口不受支持时，可手动填写服务商提供的模型 ID。</div>
+<p class="small">此流程让你在 Zotero 内调用 Claude API。它不配置 Claude 桌面应用的 MCP，也不连接 Claude 桌面应用的聊天记录。安装脚本不接收密钥、不调用付费 API；第一次发送问题会使用你的 API 额度。</p>
+</section>
+
+<section class="card"><h2>④ 用一篇论文验证连接</h2>
+<p>选中论文并打开 PDF；需要读取正文时，在 Glossa 中开启“全文”。发送：</p>
+<div class="prompt" id="example">请用中文概括本文的研究问题、数据来源、研究方法、主要结论与局限。对关键表述标注可回溯的来源；如果文中没有依据，请明确说明。</div>
+<p>收到有来源标记的回答后，即可使用 <code>/summarize</code>、<code>/translate</code>、<code>/explain</code> 或 <code>/compare</code>。保存回答时，切换到 <strong>Act → 保存为笔记</strong>。</p>
+<p class="small">这个版本每次最多比较六篇文献，PDF 正文最多读取每篇前 40 页，正文上下文总量有上限；扫描 PDF 需要先做 OCR，不能把“全文”理解为整篇均已输入模型。</p>
+</section>
+
+<section class="card"><h2>遇到问题时</h2>
+<details><summary>提示版本不兼容</summary><p>确认是 Zotero 10.0.6 或更高的正式版 10.x。7/8/9、10.0.0–10.0.5、11 或测试版不在本包兼容范围内。不要修改插件的版本声明强行安装。</p></details>
+<details><summary>装过 Glossa 0.1.0，或已经有更新的版本</summary><p>作者要求 0.1.0 先在插件管理器移除，再重启 Zotero，之后安装 0.2.0。助手遇到比 0.2.0 更新的插件会停止，避免降级。</p></details>
+<details><summary>401 / 403，或者获取模型列表失败</summary><p>核对密钥是否有效、是否有该服务和模型的权限，API 地址是否对应发放密钥的服务商。服务商可能不支持模型列表；这种情况可手动填它提供的模型 ID。连接超时则先检查 Zotero 能否访问该 API 服务。</p></details>
+<details><summary>404 / 429 或余额不足</summary><p>404：核对 API 地址、协议和模型 ID。429：可能是请求频率或额度限制，按服务商说明处理。余额不足：到发放密钥的服务商账户检查 API 额度。</p></details>
+<details><summary>脚本没有找到 Zotero 或配置文件</summary><p>请先正常启动 Zotero 一次再退出。自定义便携版、配置位置或受组织管理的安装，请用第②步的手动安装功能。助手不会创建或猜测新的文献库。</p></details>
+<details><summary>脚本修改了哪些文件？如何撤回？</summary><p>助手只部署 Glossa XPI，并清除 <code>prefs.js</code> 中两个启动缓存标记（<code>extensions.lastAppBuildId</code>、<code>extensions.lastAppVersion</code>），让 Zotero 重新扫描插件。安全策略、已有插件的禁用状态、数据库与 PDF 不由助手更改。</p><p>修改前的文件存放在所选配置目录的 <code>glossa-setup-backups/时间戳/</code>。<code>previous.xpi</code> 是旧版插件；<code>prefs.js</code> 是当时的设置备份。只有需要恢复那一时刻的设置时才还原，且先完全退出 Zotero。普通卸载直接使用“工具 → 插件 → 移除”。</p></details>
+</section>
+
+<footer><p><strong>来源与检查范围：</strong>本包使用 <a href="https://github.com/yiiwang118/zotero-glossa/releases/tag/0.2.0">作者发布的 Glossa 0.2.0</a> 原版 XPI，保留原许可证；安装助手由 ChatGPT 为本次请求制作，并非 Zotero 或 Glossa 官方安装器。已检查哈希、脚本语法，并在隔离临时配置中验证部署、备份、重复运行与异常保护；未在真实 Windows/macOS 的 Zotero 界面中完成安装验证。作者说明插件已在 macOS 验证，Windows/Linux 尚未实机测试。</p><p>参考：<a href="https://github.com/yiiwang118/zotero-glossa/blob/0.2.0/README.zh-CN.md">作者中文说明</a> · <a href="https://www.zotero.org/support/plugins">Zotero 插件安装文档</a>。更多细节见本文件夹的 README.txt。</p></footer>
+</main>
+</html>
